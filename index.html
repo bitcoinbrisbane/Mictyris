@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mictyris — Marine Delivery Holdings</title>
+  <title>Mictyris, Marine Delivery Holdings</title>
   <meta name="description" content="Mictyris is a holding company backing a next-generation marine delivery project." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IM+Fell+English+SC&family=Pirata+One&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --deep: #04263f;
-      --sea: #0a5a86;
-      --tide: #12a2c9;
-      --foam: #e9f6fb;
-      --sand: #f7efe1;
-      --crab: #ff6b4a;
-      --crab-dark: #e0492b;
-      --ink: #0c2233;
+      --paper: #efe6d0;
+      --paper-dark: #e4d7ba;
+      --ink: #3a2c1a;
+      --ink-soft: #5a4631;
+      --sepia: #6b4a28;
+      --rust: #8a3b1e;
+      --line: #8a7656;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,216 +24,304 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+      font-family: "EB Garamond", Georgia, "Times New Roman", serif;
       color: var(--ink);
-      background: var(--foam);
-      line-height: 1.6;
+      background-color: var(--paper);
+      /* aged-paper grain + vignette */
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(255,250,235,0.5), transparent 60%),
+        radial-gradient(ellipse at 50% 120%, rgba(60,40,20,0.22), transparent 55%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+      line-height: 1.7;
+      font-size: 1.12rem;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ---------- Header / Hero ---------- */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem 1.5rem 4rem;
-      background: linear-gradient(180deg, var(--deep) 0%, var(--sea) 55%, var(--tide) 100%);
-      color: #fff;
-      overflow: hidden;
-    }
+    a { color: var(--rust); }
 
-    /* subtle wave at bottom of hero */
-    .hero::after {
+    /* decorative double-rule divider */
+    .rule {
+      display: block;
+      width: 100%;
+      max-width: 520px;
+      margin: 1.6rem auto;
+      border: 0;
+      border-top: 1px solid var(--line);
+      position: relative;
+    }
+    .rule::after {
       content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 90px;
-      background:
-        radial-gradient(circle at 20% 100%, var(--foam) 40px, transparent 41px),
-        radial-gradient(circle at 50% 100%, var(--foam) 50px, transparent 51px),
-        radial-gradient(circle at 80% 100%, var(--foam) 45px, transparent 46px);
-      background-color: var(--foam);
-      background-repeat: repeat-x;
+      left: 0; right: 0;
+      top: 3px;
+      border-top: 1px solid var(--line);
+    }
+    .rule .fleuron {
+      position: absolute;
+      top: -0.8em;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--paper);
+      padding: 0 0.7rem;
+      color: var(--sepia);
+      font-size: 1.1rem;
+      letter-spacing: 0.3em;
+    }
+
+    .label {
+      font-family: "IM Fell English SC", serif;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--sepia);
+      font-size: 0.82rem;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 2rem 1.5rem 3.5rem;
+      border-bottom: 3px double var(--line);
     }
 
     nav {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.4rem 2rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0.8rem 0 2rem;
+      border-bottom: 1px solid var(--line);
+      font-family: "IM Fell English SC", serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
     }
+    nav .brand { display: flex; align-items: center; gap: 0.55rem; font-size: 1rem; }
+    nav .brand svg { width: 30px; height: 30px; }
+    nav a { color: var(--ink-soft); text-decoration: none; }
+    nav a:hover { color: var(--rust); }
+    nav .links a { margin-left: 1.2rem; }
 
-    nav .brand { display: flex; align-items: center; gap: 0.6rem; font-size: 1.15rem; }
-    nav .brand svg { width: 34px; height: 34px; }
-    nav a { color: #cdeefb; text-decoration: none; font-weight: 500; }
-    nav a:hover { color: #fff; }
-
-    .logo {
-      width: 180px;
-      height: 180px;
-      margin-bottom: 1.5rem;
-      filter: drop-shadow(0 10px 22px rgba(0,0,0,0.35));
-      animation: bob 4s ease-in-out infinite;
+    .plate {
+      width: clamp(220px, 46vw, 340px);
+      height: auto;
+      margin: 2.4rem auto 0.6rem;
+      display: block;
+      animation: drift 7s ease-in-out infinite;
     }
-
-    @keyframes bob {
+    @keyframes drift {
       0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(-1.5deg); }
+      50% { transform: translateY(-8px) rotate(-0.6deg); }
+    }
+    .claw-l { transform-box: fill-box; transform-origin: 70% 40%; animation: pinch 3s ease-in-out infinite; }
+    @keyframes pinch {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(-9deg); }
     }
 
-    /* pincer wave */
-    .claw-l { transform-box: fill-box; transform-origin: center; animation: wave 2.2s ease-in-out infinite; }
-    @keyframes wave {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(-16deg); }
+    .binomial {
+      font-style: italic;
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+      margin-top: 0.2rem;
     }
 
     .hero h1 {
-      font-size: clamp(2.4rem, 7vw, 4.4rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.4rem;
+      font-family: "Pirata One", "IM Fell English SC", serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 11vw, 6.2rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin: 1.2rem 0 0.2rem;
+      color: var(--ink);
     }
-
     .hero .tag {
-      font-size: clamp(1rem, 2.6vw, 1.35rem);
-      color: #d5f1fb;
-      max-width: 620px;
-      margin: 0 auto 2rem;
+      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+      max-width: 600px;
+      margin: 0.8rem auto 2rem;
+      color: var(--ink-soft);
     }
 
     .cta {
       display: inline-block;
-      background: var(--crab);
-      color: #fff;
-      font-weight: 700;
-      padding: 0.85rem 2rem;
-      border-radius: 999px;
+      font-family: "IM Fell English SC", serif;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.9rem;
+      color: var(--paper);
+      background: var(--sepia);
+      padding: 0.8rem 2.2rem;
+      border: 1px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
       text-decoration: none;
-      box-shadow: 0 8px 20px rgba(255,107,74,0.4);
-      transition: transform 0.15s ease, background 0.15s ease;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
     }
-    .cta:hover { background: var(--crab-dark); transform: translateY(-2px); }
+    .cta:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--ink); }
 
-    /* ---------- Sections ---------- */
+    /* ---------- Content ---------- */
     section.content {
-      max-width: 1040px;
+      max-width: 940px;
       margin: 0 auto;
-      padding: 4.5rem 1.5rem;
+      padding: 4rem 1.5rem;
     }
-
-    .lead {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 3.5rem;
+    .lead { text-align: center; max-width: 680px; margin: 0 auto 3rem; }
+    .lead h2 {
+      font-family: "IM Fell English SC", serif;
+      font-weight: 400;
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+      color: var(--ink);
+      margin-bottom: 0.6rem;
     }
-    .lead h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--deep); margin-bottom: 0.8rem; }
-    .lead p { font-size: 1.1rem; color: #37576b; }
+    .lead p { font-size: 1.15rem; color: var(--ink-soft); }
+    .dropcap::first-letter {
+      font-family: "Pirata One", serif;
+      font-size: 3.4rem;
+      line-height: 0.8;
+      float: left;
+      padding: 0.1rem 0.5rem 0 0;
+      color: var(--rust);
+    }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
     }
-
     .card {
-      background: #fff;
-      border: 1px solid #dcecf3;
-      border-radius: 18px;
-      padding: 2rem 1.6rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      text-align: center;
+      padding: 1.8rem 1.4rem;
+      border: 1px solid var(--line);
+      background: rgba(255,251,240,0.35);
+      position: relative;
     }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(10,90,134,0.14); }
-    .card .icon { font-size: 2rem; margin-bottom: 0.8rem; }
-    .card h3 { color: var(--sea); font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .card p { color: #4a6577; font-size: 0.98rem; }
+    .card::before, .card::after {
+      content: "";
+      position: absolute;
+      width: 10px; height: 10px;
+      border: 1px solid var(--line);
+    }
+    .card::before { top: 5px; left: 5px; border-right: 0; border-bottom: 0; }
+    .card::after { bottom: 5px; right: 5px; border-left: 0; border-top: 0; }
+    .card .fig { width: 64px; height: 64px; margin: 0 auto 0.9rem; display: block; }
+    .card h3 {
+      font-family: "IM Fell English SC", serif;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 1.05rem;
+      color: var(--sepia);
+      margin-bottom: 0.5rem;
+    }
+    .card p { color: var(--ink-soft); font-size: 1rem; }
 
     /* ---------- Project band ---------- */
     .band {
-      background: var(--sand);
-      border-top: 1px solid #ecdec6;
-      border-bottom: 1px solid #ecdec6;
+      border-top: 3px double var(--line);
+      border-bottom: 3px double var(--line);
+      background: rgba(60,40,20,0.05);
     }
-    .band .inner {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 4rem 1.5rem;
-      text-align: center;
+    .band .inner { max-width: 760px; margin: 0 auto; padding: 3.8rem 1.5rem; text-align: center; }
+    .band h2 {
+      font-family: "Pirata One", serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--ink);
+      margin: 0.8rem 0 1rem;
     }
-    .band .pill {
-      display: inline-block;
-      background: var(--crab);
-      color: #fff;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      margin-bottom: 1.2rem;
-    }
-    .band h2 { color: var(--deep); font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 1rem; }
-    .band p { color: #5a4d38; font-size: 1.1rem; max-width: 640px; margin: 0 auto; }
+    .band p { color: var(--ink-soft); font-size: 1.15rem; max-width: 600px; margin: 0 auto; }
 
     /* ---------- Footer ---------- */
     footer {
-      background: var(--deep);
-      color: #b9d6e6;
       text-align: center;
-      padding: 3rem 1.5rem 2.5rem;
+      padding: 3rem 1.5rem 2.6rem;
+      border-top: 1px solid var(--line);
     }
-    footer .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 700; color: #fff; font-size: 1.3rem; margin-bottom: 0.6rem; }
-    footer .brand svg { width: 30px; height: 30px; }
-    footer a { color: var(--tide); text-decoration: none; }
-    footer .fine { margin-top: 1rem; font-size: 0.85rem; color: #6f95ab; }
+    footer .brand {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: "Pirata One", serif;
+      font-size: 1.8rem;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+    footer .brand svg { width: 34px; height: 34px; }
+    footer a { color: var(--rust); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer .fine { margin-top: 1.2rem; font-size: 0.82rem; color: var(--sepia); font-style: italic; }
   </style>
 </head>
 <body>
 
-  <!-- Reusable crab logo defined once, referenced with <use> -->
+  <!-- Reusable crab engraving defined once, referenced with <use>.
+       Rendered as ink line-work (no flat fill) with hatched shading for an antique naturalist-plate feel. -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
-      <symbol id="crab" viewBox="0 0 120 120">
-        <!-- legs -->
-        <g stroke="#e0492b" stroke-width="5" stroke-linecap="round" fill="none">
-          <path d="M38 78 L18 84 M40 86 L22 96 M44 92 L30 104" />
-          <path d="M82 78 L102 84 M80 86 L98 96 M76 92 L90 104" />
+      <symbol id="crab" viewBox="0 0 160 150">
+        <g fill="none" stroke="#3a2c1a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- carapace -->
+          <path d="M80 56
+                   C54 56 36 70 36 88
+                   C36 104 56 114 80 114
+                   C104 114 124 104 124 88
+                   C124 70 106 56 80 56 Z"/>
+          <!-- carapace rim detail -->
+          <path d="M44 86 C58 96 102 96 116 86"/>
+          <path d="M52 70 C64 64 96 64 108 70"/>
+          <!-- cross-hatch shading on shell -->
+          <g stroke-width="1" opacity="0.65">
+            <path d="M58 92 l8 8 M70 90 l9 9 M82 90 l9 9 M94 92 l8 8 M66 82 l7 7 M78 82 l7 7 M90 82 l7 7"/>
+          </g>
+          <!-- eye stalks + eyes -->
+          <path d="M66 58 L60 40 M94 58 L100 40"/>
+          <circle cx="59" cy="36" r="5"/>
+          <circle cx="101" cy="36" r="5"/>
+          <circle cx="59" cy="36" r="1.6" fill="#3a2c1a"/>
+          <circle cx="101" cy="36" r="1.6" fill="#3a2c1a"/>
+
+          <!-- legs, left -->
+          <path d="M40 92 C24 94 16 100 8 110"/>
+          <path d="M40 100 C24 104 18 112 12 122"/>
+          <path d="M44 108 C32 114 28 122 26 132"/>
+          <!-- legs, right -->
+          <path d="M120 92 C136 94 144 100 152 110"/>
+          <path d="M120 100 C136 104 142 112 148 122"/>
+          <path d="M116 108 C128 114 132 122 134 132"/>
+
+          <!-- right claw (static, larger) -->
+          <path d="M118 74 C134 66 142 54 140 40"/>
+          <path d="M140 40 c8 -6 16 -2 16 8 c0 7 -6 11 -12 10
+                   M140 40 c-3 6 -1 13 6 16 c6 2 10 -1 10 -8"/>
+          <!-- left claw (animated pinch) -->
+          <g class="claw-l">
+            <path d="M42 74 C26 66 18 54 20 40"/>
+            <path d="M20 40 c-8 -6 -16 -2 -16 8 c0 7 6 11 12 10
+                     M20 40 c3 6 1 13 -6 16 c-6 2 -10 -1 -10 -8"/>
+          </g>
         </g>
-        <!-- left claw (waves) -->
-        <g class="claw-l">
-          <path d="M40 58 C24 56 16 46 16 36" stroke="#e0492b" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <path d="M16 36 c-9 -2 -13 4 -10 11 c4 6 12 5 15 -1 c-6 1 -9 -2 -8 -6 c1 -3 4 -4 8 -4 l-5 0" fill="#ff6b4a" stroke="#e0492b" stroke-width="2"/>
+      </symbol>
+
+      <!-- small line fleurons for the cards -->
+      <symbol id="fig-anchor" viewBox="0 0 48 48">
+        <g fill="none" stroke="#6b4a28" stroke-width="2" stroke-linecap="round">
+          <circle cx="24" cy="10" r="4"/>
+          <path d="M24 14 V40"/>
+          <path d="M14 22 H34"/>
+          <path d="M10 32 C12 40 20 42 24 42 C28 42 36 40 38 32"/>
         </g>
-        <!-- right claw -->
-        <g>
-          <path d="M80 58 C96 56 104 46 104 36" stroke="#e0492b" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <path d="M104 36 c9 -2 13 4 10 11 c-4 6 -12 5 -15 -1 c6 1 9 -2 8 -6 c-1 -3 -4 -4 -8 -4 l5 0" fill="#ff6b4a" stroke="#e0492b" stroke-width="2"/>
+      </symbol>
+      <symbol id="fig-wave" viewBox="0 0 48 48">
+        <g fill="none" stroke="#6b4a28" stroke-width="2" stroke-linecap="round">
+          <path d="M6 30 C10 22 16 22 20 30 C24 38 30 38 34 30 C38 22 42 24 44 28"/>
+          <path d="M6 20 C10 12 16 12 20 20 C24 28 30 28 34 20 C38 12 42 14 44 18"/>
         </g>
-        <!-- body / shell -->
-        <ellipse cx="60" cy="66" rx="30" ry="23" fill="#ff6b4a" stroke="#e0492b" stroke-width="3"/>
-        <!-- shell shine -->
-        <ellipse cx="50" cy="58" rx="9" ry="5" fill="#ff8a70" opacity="0.8"/>
-        <!-- eye stalks -->
-        <line x1="50" y1="46" x2="47" y2="32" stroke="#e0492b" stroke-width="4" stroke-linecap="round"/>
-        <line x1="70" y1="46" x2="73" y2="32" stroke="#e0492b" stroke-width="4" stroke-linecap="round"/>
-        <circle cx="47" cy="29" r="6" fill="#fff" stroke="#e0492b" stroke-width="2"/>
-        <circle cx="73" cy="29" r="6" fill="#fff" stroke="#e0492b" stroke-width="2"/>
-        <circle cx="48" cy="30" r="2.4" fill="#0c2233"/>
-        <circle cx="72" cy="30" r="2.4" fill="#0c2233"/>
-        <!-- smile -->
-        <path d="M50 72 q10 9 20 0" stroke="#e0492b" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="fig-compass" viewBox="0 0 48 48">
+        <g fill="none" stroke="#6b4a28" stroke-width="2" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="18"/>
+          <path d="M24 10 L28 24 L24 38 L20 24 Z"/>
+          <path d="M10 24 L24 20 L38 24 L24 28 Z"/>
+        </g>
       </symbol>
     </defs>
   </svg>
@@ -239,34 +329,39 @@
   <header class="hero">
     <nav>
       <span class="brand"><svg><use href="#crab"/></svg> Mictyris</span>
-      <span><a href="#about">About</a> &nbsp; <a href="#project">Project</a> &nbsp; <a href="#contact">Contact</a></span>
+      <span class="links"><a href="#about">About</a><a href="#project">Project</a><a href="#contact">Contact</a></span>
     </nav>
 
-    <svg class="logo" aria-label="Mictyris crab logo"><use href="#crab"/></svg>
+    <svg class="plate" viewBox="0 0 160 150" aria-label="Engraving of a soldier crab"><use href="#crab"/></svg>
+    <p class="binomial">Mictyris longicarpus</p>
     <h1>Mictyris</h1>
-    <p class="tag">A holding company charting the course for the future of marine delivery — moving goods across the water, cleaner and smarter.</p>
+
+    <div class="rule"><span class="fleuron">&#10070;</span></div>
+
+    <p class="tag">A holding company charting the course for the future of marine delivery, moving goods across the water, cleaner and smarter.</p>
     <a class="cta" href="#contact">Get in touch</a>
   </header>
 
   <section class="content" id="about">
     <div class="lead">
+      <span class="label">On Our Nature</span>
       <h2>Steady hands on the tide</h2>
-      <p>Named for the <em>Mictyris</em> — the soldier crab that marches the shoreline in vast, coordinated ranks — we back ventures that make moving things over water simpler, greener, and more reliable.</p>
+      <p class="dropcap">Named for the <em>Mictyris</em>, the soldier crab that marches the shoreline in vast, coordinated ranks, we back ventures that make moving things over water simpler, greener, and more reliable.</p>
     </div>
 
     <div class="cards">
       <div class="card">
-        <div class="icon">🦀</div>
+        <svg class="fig"><use href="#fig-anchor"/></svg>
         <h3>Holding &amp; Stewardship</h3>
         <p>We hold and nurture the assets, IP, and partnerships behind our marine delivery venture for the long haul.</p>
       </div>
       <div class="card">
-        <div class="icon">🌊</div>
+        <svg class="fig"><use href="#fig-wave"/></svg>
         <h3>Marine Delivery</h3>
-        <p>Rethinking last-nautical-mile logistics — coastal, inland waterway, and port-to-door transport.</p>
+        <p>Rethinking last-nautical-mile logistics: coastal, inland waterway, and port-to-door transport.</p>
       </div>
       <div class="card">
-        <div class="icon">🧭</div>
+        <svg class="fig"><use href="#fig-compass"/></svg>
         <h3>Long-term Vision</h3>
         <p>Patient capital and steady governance so our project can navigate the tides and scale responsibly.</p>
       </div>
@@ -275,17 +370,18 @@
 
   <div class="band" id="project">
     <div class="inner">
-      <span class="pill">Flagship Project</span>
-      <h2>Delivery, by water</h2>
-      <p>Our marine delivery project is charting new routes for moving cargo where roads can't — or shouldn't — go. More details will surface soon as we bring the venture to shore.</p>
+      <span class="label">Flagship Project</span>
+      <h2>Delivery, by Water</h2>
+      <div class="rule"><span class="fleuron">&#10070;</span></div>
+      <p>Our marine delivery project is charting new routes for moving cargo where roads can't go, or shouldn't. More details will surface soon as we bring the venture to shore.</p>
     </div>
   </div>
 
   <footer id="contact">
     <div class="brand"><svg><use href="#crab"/></svg> Mictyris</div>
-    <p>Marine Delivery Holdings</p>
-    <p style="margin-top:0.6rem;">General enquiries: <a href="mailto:hello@mictyris.com">hello@mictyris.com</a></p>
-    <p class="fine">© <span id="year">2026</span> Mictyris. All rights reserved.</p>
+    <p class="label">Marine Delivery Holdings</p>
+    <p style="margin-top:0.8rem;">General enquiries: <a href="mailto:hello@mictyris.com">hello@mictyris.com</a></p>
+    <p class="fine">&copy; <span id="year">2026</span> Mictyris. All rights reserved.</p>
   </footer>
 
   <script>

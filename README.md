@@ -1,12 +1,12 @@
 # Mictyris
 
-Landing page for **Mictyris.com** — a holding company backing a marine delivery project.
+Landing page for **Mictyris.com**, a holding company backing a marine delivery project.
 
 Named after *Mictyris*, the soldier crab that marches the shoreline in coordinated ranks.
 
 ## Contents
 
-- `index.html` — single-page site, fully self-contained (inline CSS + inline SVG crab logo, no build step, no dependencies).
+- `index.html`: single-page site, fully self-contained (inline CSS + inline SVG crab logo, no build step, no dependencies).
 
 ## Preview
 
@@ -19,4 +19,4 @@ python3 -m http.server
 
 ## Deploy
 
-Because it's a single static file, it deploys anywhere — GitHub Pages, Netlify, Cloudflare Pages, S3, etc. Point the `mictyris.com` domain at the host and you're live.
+Because it's a single static file, it deploys anywhere: GitHub Pages, Netlify, Cloudflare Pages, S3, etc. Point the `mictyris.com` domain at the host and you're live.
